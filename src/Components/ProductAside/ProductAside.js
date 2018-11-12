@@ -8,6 +8,7 @@ import {
   Avatar
 } from 'react-md';
 import { Link } from 'react-router-dom'
+import { productFilters } from '../../helpers/enums'
 import styles from './ProductAside.module.sass'
 
 const AllIcon = (
@@ -60,13 +61,13 @@ const ProductAside = ({ filter }) => {
             All
           </OwnListItem>
           <Divider />
-          <OwnListItem to="/products/tech" icon={TechIcon} active={filter === 'tech'}> {/** // TODO: use enum */}
+          <OwnListItem to="/products/tech" icon={TechIcon} active={filter === productFilters.tech}>
             Tech
           </OwnListItem>
-          <OwnListItem to="/products/services" icon={ServicesIcon} active={filter === 'services'}>
+          <OwnListItem to="/products/services" icon={ServicesIcon} active={filter === productFilters.services}>
             Services
           </OwnListItem>
-          <OwnListItem to="/products/office" icon={OfficeIcon} active={filter === 'office'}>
+          <OwnListItem to="/products/office" icon={OfficeIcon} active={filter === productFilters.office}>
             Office
           </OwnListItem>
         </List>

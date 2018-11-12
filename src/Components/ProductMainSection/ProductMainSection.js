@@ -5,16 +5,12 @@ import {
   TextField,
   CircularProgress ,
 } from 'react-md';
+import { productViewModes } from '../../helpers/enums'
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProductMainSection.module.sass'
 
-const viewModes = Object.freeze({ // TODO: reuse
-  list: 'list',
-  grid: 'grid',
-})
-
 const ProductMainSection = ({ viewMode, changeViewMode, visibles, all, loading }) => {
-  const productListClass = viewMode === viewModes.grid ? styles.ProductListGrid : styles.ProductList
+  const productListClass = viewMode === productViewModes.grid ? styles.ProductListGrid : styles.ProductList
   const hiddenProducts = all.length - visibles.length
 
   if (loading) {
@@ -29,13 +25,13 @@ const ProductMainSection = ({ viewMode, changeViewMode, visibles, all, loading }
         <header>
           <button
             className={styles.Button}
-            onClick={() => changeViewMode(viewModes.list)}
+            onClick={() => changeViewMode(productViewModes.list)}
           >
             <FontIcon>list</FontIcon>
           </button>
           <button
             className={styles.Button}
-            onClick={() => changeViewMode(viewModes.grid)}
+            onClick={() => changeViewMode(productViewModes.grid)}
           >
             <FontIcon>view_module</FontIcon>
           </button>
@@ -66,7 +62,7 @@ const ProductMainSection = ({ viewMode, changeViewMode, visibles, all, loading }
               }
               return (
                 <div className={styles.ProductContainer} key={product.id}>
-                  <ProductCard inAGrid={viewMode === viewModes.grid} {...productData} />
+                  <ProductCard inAGrid={viewMode === productViewModes.grid} {...productData} />
                 </div>
               )
             })

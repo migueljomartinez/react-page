@@ -1,10 +1,6 @@
 import React from 'react'
-import { Route, Switch, matchPath } from 'react-router-dom'
+import { matchPath } from 'react-router-dom'
 import { Tabs, Tab } from 'react-md'
-import Home from '../../Pages/Home/Home'
-import Products from '../../Containers/ProductsPage'
-import Clients from '../../Pages/Clients/Clients'
-import Contact from '../../Containers/ContactPage'
 import styles from './Navigation.module.sass'
 
 const tabs = [{
@@ -33,7 +29,7 @@ const findCurrentTab = (location, tabs) => {
   }) || {}
 }
 
-const Navigation = (props) => { // TODO: Refactor
+const Navigation = (props) => {
   const currentTab = findCurrentTab(props.location, tabs)
   const activeTabIndex = currentTab.index || 0
 
@@ -45,13 +41,6 @@ const Navigation = (props) => { // TODO: Refactor
         <Tab label="Clients" onClick={() => props.history.push('/clients')} />
         <Tab label="Contact" onClick={() => props.history.push('/contact')} />
       </Tabs>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/products" component={Products} />
-        <Route path="/products/:filter" component={Products} />
-        <Route path="/clients" component={Clients} />
-        <Route path="/contact" component={Contact} />
-      </Switch>
     </div>
   )
 }
