@@ -8,9 +8,7 @@ import styles from './MainSection.module.sass'
 import { viewModes } from '../Products'
 
 const MainSection = ({ viewMode, changeViewMode }) => {
-  const productListClass = (
-    `${styles.ProductList}${viewMode === viewModes.grid ? ` ${styles.ProductListGrid}` : ''}`
-  )
+  const productListClass = viewMode === viewModes.grid ? styles.ProductListGrid : styles.ProductList
 
   return (
     <section className={styles.MainContent}>

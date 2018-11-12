@@ -7,7 +7,7 @@ import {
 } from 'react-md';
 
 const Product = ({ inAGrid }) => {
-  const containerClass = `${styles.ProductContainer}${inAGrid ? ` ${styles.ContainerGrid}` : ''}`
+  const containerClass = inAGrid ? styles.ContainerGrid : styles.ProductContainer
 
   return (
     <div className={containerClass}>

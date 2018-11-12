@@ -17,6 +17,9 @@ export default class Products extends React.Component {
     this.setState({ viewMode })
   }
 
+  componentDidMount = () => {
+  }
+
   render() {
     const { viewMode } = this.state
 

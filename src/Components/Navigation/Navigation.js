@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { TabsContainer, Tabs, Tab } from 'react-md'
+import { Tabs, Tab } from 'react-md'
 import Home from '../../Pages/Home/Home'
 import Products from '../../Pages/Products/Products'
 import Clients from '../../Pages/Clients/Clients'
