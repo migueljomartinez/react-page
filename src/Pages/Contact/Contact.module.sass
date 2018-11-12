@@ -1,10 +1,35 @@
 @import '~react-md/src/scss/react-md'
 
 .Container
-  
-.TabsWrapper
-  background-color: $md-teal-500
+  background-color: white
+  min-height: calc(100vh - 4.8rem)
+  display: flex
+  justify-content: center
+  align-items: center
 
-.TabsContainer
-  max-width: 75rem
+.Paper
+  width: 100%
+  width: 100%
+  max-width: 60rem
   margin: auto
+
+.Form
+  padding: 1rem 3rem 2rem
+  .TextFieldContainer:last-child
+    margin-bottom: 0
+
+.TextFieldContainer
+  position: relative
+  margin-bottom: 1rem
+
+.TextError
+  color: red
+  position: absolute
+  top: 100%
+  font-size: 1.1rem
+
+.SubmitBtnContainer
+  display: flex
+  justify-content: flex-end
+  padding-top: 1rem
+

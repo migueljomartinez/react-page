@@ -8,7 +8,7 @@ export const viewModes = Object.freeze({
   grid: 'grid',
 })
 
-class Products extends React.Component {
+export default class Products extends React.Component {
   state = {
     viewMode: viewModes.list
   }
@@ -28,5 +28,3 @@ class Products extends React.Component {
     )
   }
 }
-
-export default Products

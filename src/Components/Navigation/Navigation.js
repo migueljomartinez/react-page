@@ -8,24 +8,16 @@ import Contact from '../../Pages/Contact/Contact'
 import styles from './Navigation.module.sass'
 
 const tabs = [{
-  label: 'Home',
   path: '/',
-  component: () => <Home />,
   index: 0,
 }, {
-  label: 'Products',
   path: '/products',
-  component: () => <Products />,
   index: 1,
 }, {
-  label: 'Clients',
   path: '/clients',
-  component: () => <Clients />,
   index: 2,
 }, {
-  label: 'Contact',
   path: '/contact',
-  component: () => <Contact />,
   index: 3,
 }]
 
