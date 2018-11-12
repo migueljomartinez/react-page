@@ -19,12 +19,12 @@ const fetchingProductsError = (payload) => ({
   error: true
 })
 
-const getProducts = () => (store, dispatch) => {
-  console.log(store, dispatch)
+const getProducts = () => (dispatch, getState) => {
   dispatch(fetchingProducts())
   fetch('http://localhost:8888/products')
     .then(response => response.json())
     .then(data => {
+      console.log('data', data)
       dispatch(fetchingProductsSuccess(data))
     })
     .catch(error => {

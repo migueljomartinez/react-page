@@ -1,30 +1,30 @@
 import { constants } from './actions'
 
 const defaultState = {
-  products: [],
-  isLoading: false,
+  items: [],
+  loading: false,
 }
 
-export default function counter(state = defaultState, action) {
+export default function allProducts(state = defaultState, action) {
   switch (action.type) {
     case constants.FETCHING_PRODUCTS:
       return {
         ...state,
-        isLoading: true,
+        loading: true
       }
 
     case constants.FETCHING_PRODUCTS_ERROR:
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        loading: false
       }
 
     case constants.FETCHING_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload,
-        isLoading: false
+        items: action.payload,
+        loading: false
       }
 
     default:

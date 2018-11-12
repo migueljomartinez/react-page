@@ -1,13 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   FontIcon,
   TextField,
 } from 'react-md';
-import ProductCard from '../../../Components/ProductCard/ProductCard'
-import styles from './MainSection.module.sass'
-import { viewModes } from '../Products'
+import ProductCard from '../ProductCard/ProductCard'
+import styles from './ProductMainSection.module.sass'
 
-const MainSection = ({ viewMode, changeViewMode }) => {
+const viewModes = Object.freeze({ // TODO: reuse
+  list: 'list',
+  grid: 'grid',
+})
+
+const ProductMainSection = ({ viewMode, changeViewMode, products, loading }) => {
   const productListClass = viewMode === viewModes.grid ? styles.ProductListGrid : styles.ProductList
 
   return (
@@ -40,27 +45,33 @@ const MainSection = ({ viewMode, changeViewMode }) => {
         </div>
       </header>
       <div className={productListClass}>
-        <div className={styles.ProductContainer}>
-          <ProductCard inAGrid={viewMode === viewModes.grid} />
-        </div>
-        <div className={styles.ProductContainer}>
-          <ProductCard inAGrid={viewMode === viewModes.grid} />
-        </div>
-        <div className={styles.ProductContainer}>
-          <ProductCard inAGrid={viewMode === viewModes.grid} />
-        </div>
-        <div className={styles.ProductContainer}>
-          <ProductCard inAGrid={viewMode === viewModes.grid} />
-        </div>
-        <div className={styles.ProductContainer}>
-          <ProductCard inAGrid={viewMode === viewModes.grid} />
-        </div>
-        <div className={styles.ProductContainer}>
-          <ProductCard inAGrid={viewMode === viewModes.grid} />
-        </div>
+        {
+          products.map(product => {
+            const productData = {
+              title: product.name,
+              subtitle: product.brand,
+              description: product.description,
+              image: product.photo,
+              stock: product.stock,
+              price: product.price,
+            }
+            return (
+              <div className={styles.ProductContainer} key={product.id}>
+                <ProductCard inAGrid={viewMode === viewModes.grid} {...productData} />
+              </div>
+            )
+          })
+        }
       </div>
     </section>
   )
 }
 
-export default MainSection
+ProductMainSection.propTypes = {
+  viewMode: PropTypes.bool,
+  changeViewMode: PropTypes.func,
+  products: PropTypes.array,
+  loading: PropTypes.bool,
+}
+
+export default ProductMainSection

@@ -1,28 +1,41 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, matchPath } from 'react-router-dom'
 import { Tabs, Tab } from 'react-md'
 import Home from '../../Pages/Home/Home'
-import Products from '../../Pages/Products/Products'
+import Products from '../../Containers/ProductsPage'
 import Clients from '../../Pages/Clients/Clients'
 import Contact from '../../Pages/Contact/Contact'
 import styles from './Navigation.module.sass'
 
 const tabs = [{
-  path: '/',
+  paths: ['/'],
   index: 0,
 }, {
-  path: '/products',
+  paths: ['/products', '/products/:filter'],
   index: 1,
 }, {
-  path: '/clients',
+  paths: ['/clients'],
   index: 2,
 }, {
-  path: '/contact',
+  paths: ['/contact'],
   index: 3,
 }]
 
-const Navigation = (props) => {
-  const activeTabIndex = tabs.find(tab => props.location.pathname === tab.path).index
+const findCurrentTab = (location, tabs) => {
+  return tabs.find(tab => {
+    return tab.paths.find(path => {
+      const match = matchPath(location.pathname, {
+        path: path,
+        exact: true
+      })
+      return match
+    })
+  }) || {}
+}
+
+const Navigation = (props) => { // TODO: Refactor
+  const currentTab = findCurrentTab(props.location, tabs)
+  const activeTabIndex = currentTab.index || 0
 
   return (
     <div className={styles.TabsWrapper}>
@@ -34,9 +47,9 @@ const Navigation = (props) => {
       </Tabs>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/products" component={Products} />
-        <Route exact path="/clients" component={Clients} />
-        <Route exact path="/contact" component={Contact} />
+        <Route path="/products" component={Products} />
+        <Route path="/clients" component={Clients} />
+        <Route path="/contact" component={Contact} />
       </Switch>
     </div>
   )
