@@ -9,9 +9,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Route path="/" component={Navigation} />
-        </div>
+        <Route path="/" component={Navigation} />
       </Router>
     )
   }

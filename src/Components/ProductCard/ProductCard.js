@@ -12,7 +12,7 @@ const Product = ({ title, subtitle, image, description, stock, price, inAGrid })
 
   return (
     <div className={containerClass}>
-      <Card>
+      <Card className={styles.ProductCard}>
         <CardTitle
           title={title}
           subtitle={subtitle}

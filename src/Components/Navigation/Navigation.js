@@ -4,7 +4,7 @@ import { Tabs, Tab } from 'react-md'
 import Home from '../../Pages/Home/Home'
 import Products from '../../Containers/ProductsPage'
 import Clients from '../../Pages/Clients/Clients'
-import Contact from '../../Pages/Contact/Contact'
+import Contact from '../../Containers/ContactPage'
 import styles from './Navigation.module.sass'
 
 const tabs = [{
@@ -47,7 +47,8 @@ const Navigation = (props) => { // TODO: Refactor
       </Tabs>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/products" component={Products} />
+        <Route exact path="/products" component={Products} />
+        <Route path="/products/:filter" component={Products} />
         <Route path="/clients" component={Clients} />
         <Route path="/contact" component={Contact} />
       </Switch>

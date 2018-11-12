@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   List,
   Subheader,
@@ -33,9 +34,11 @@ const OfficeIcon = (
   </Avatar>
 )
 
-const OwnListItem = ({ to, children, icon }) => {
+const OwnListItem = ({ to, children, icon, active }) => {
+  const itemClassName = active ? styles.ListItemActive : styles.ListItem
+
   return (
-    <li className={styles.ListItem}>
+    <li className={itemClassName}>
       <Link to={to} className={styles.ListItemLink}>
         {icon}
         <span className="md-tile-text--primary md-text">
@@ -46,30 +49,34 @@ const OwnListItem = ({ to, children, icon }) => {
   )
 }
 
-const ProductAside = () => {
+const ProductAside = ({ filter }) => {
   return (
     <div className={styles.Container}>
       <aside className={`md-paper md-paper--1 ${styles.Aside}`}>
         <List className="">
           <Subheader primaryText="Categories" />
           <Divider />
-          <OwnListItem to="/products" icon={AllIcon}>
+          <OwnListItem to="/products" icon={AllIcon} active={!filter}>
             All
           </OwnListItem>
           <Divider />
-          <OwnListItem to="/products/tech" icon={TechIcon}>
+          <OwnListItem to="/products/tech" icon={TechIcon} active={filter === 'tech'}> {/** // TODO: use enum */}
             Tech
           </OwnListItem>
-          <OwnListItem to="/products/services" icon={ServicesIcon}>
+          <OwnListItem to="/products/services" icon={ServicesIcon} active={filter === 'services'}>
             Services
           </OwnListItem>
-          <OwnListItem to="/products/office" icon={OfficeIcon}>
+          <OwnListItem to="/products/office" icon={OfficeIcon} active={filter === 'office'}>
             Office
           </OwnListItem>
         </List>
       </aside>
     </div>
   )
+}
+
+ProductAside.propTypes = {
+  filter: PropTypes.string
 }
 
 export default ProductAside

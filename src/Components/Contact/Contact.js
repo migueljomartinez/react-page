@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './Contact.module.sass'
 import { TextField, Button, Paper } from 'react-md'
 import { Formik, Form, Field } from 'formik'
@@ -23,19 +24,21 @@ const contactSchema = Yup.object().shape({
 
 const FieldError = ({ error, touched }) => {
   return (
-    error && touched && <p className={styles.TextError}>{error}</p> || null
+    error && touched ? <p className={styles.TextError}>{error}</p> : null
   )
 }
 
-const Contact = () => {
+const Contact = ({ sendContactForm }) => {
   return (
     <div className={styles.Container}>
       <Paper zDepth={1} className={styles.Paper}>
         <Formik
           initialValues={{ firstName: '', lastName: '', email: '', subject: '' }}
           validationSchema={contactSchema}
-          onSubmit={(_, actions) => {
+          onSubmit={(values, actions) => {
             actions.setSubmitting(false)
+            console.log('values', values)
+            sendContactForm(values)
           }}
           render={({ errors, touched, isValid, isSubmitting }) => {
             return (
@@ -132,6 +135,10 @@ const Contact = () => {
       </Paper>
     </div>
   )
+}
+
+Contact.propTypes = {
+  sendContactForm: PropTypes.func.isRequired,
 }
 
 export default Contact

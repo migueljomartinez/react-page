@@ -6,15 +6,16 @@ import ProductMainSection from '../ProductMainSection/ProductMainSection'
 
 export default class Products extends React.Component {
   render() {
-    const { viewMode, changeViewMode, products, loading } = this.props
+    const { viewMode, changeViewMode, visibles, all, loading, filter } = this.props
 
     return (
       <div className={styles.Container}>
-        <ProductsAside />
+        <ProductsAside filter={filter} />
         <ProductMainSection
           viewMode={viewMode}
           changeViewMode={changeViewMode}
-          products={products}
+          visibles={visibles}
+          all={all}
           loading={loading}
         />
       </div>
@@ -25,7 +26,7 @@ export default class Products extends React.Component {
 Products.propTypes = {
   viewMode: PropTypes.string.isRequired,
   changeViewMode: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(PropTypes.shape({
+  visibles: PropTypes.arrayOf(PropTypes.shape({
     brand: PropTypes.string,
     categories: PropTypes.array,
     description: PropTypes.string,
@@ -35,5 +36,7 @@ Products.propTypes = {
     price: PropTypes.string,
     stock: PropTypes.number,
   }).isRequired).isRequired,
-  loading: PropTypes.bool.isRequired
+  all: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  filter: PropTypes.string
 }

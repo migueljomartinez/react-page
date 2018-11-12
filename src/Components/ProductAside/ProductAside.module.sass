@@ -1,3 +1,5 @@
+@import '~react-md/src/scss/react-md'
+
 .Container
   width: 20%
 
@@ -7,6 +9,10 @@
 .ListItem
   display: flex
   align-items: center
+
+.ListItemActive
+  composes: ListItem
+  background-color: $md-grey-500
 
 .ListItemLink
   padding: 0.5rem 1.7rem

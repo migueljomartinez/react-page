@@ -1,3 +1,5 @@
+import APIInterface from '../data/APIInterface'
+
 export const constants = {
   FETCHING_PRODUCTS: 'FETCHING_PRODUCTS',
   FETCHING_PRODUCTS_SUCCESS:  'FETCHING_PRODUCTS_SUCCESS',
@@ -19,12 +21,11 @@ const fetchingProductsError = (payload) => ({
   error: true
 })
 
-const getProducts = () => (dispatch, getState) => {
+const getProducts = () => (dispatch) => {
   dispatch(fetchingProducts())
-  fetch('http://localhost:8888/products')
-    .then(response => response.json())
+
+  APIInterface.getProducts()
     .then(data => {
-      console.log('data', data)
       dispatch(fetchingProductsSuccess(data))
     })
     .catch(error => {

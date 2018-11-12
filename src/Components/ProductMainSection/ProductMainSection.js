@@ -13,13 +13,14 @@ const viewModes = Object.freeze({ // TODO: reuse
   grid: 'grid',
 })
 
-const ProductMainSection = ({ viewMode, changeViewMode, products, loading }) => {
+const ProductMainSection = ({ viewMode, changeViewMode, visibles, all, loading }) => {
   const productListClass = viewMode === viewModes.grid ? styles.ProductListGrid : styles.ProductList
+  const hiddenProducts = all.length - visibles.length
 
   if (loading) {
     return (
       <div className={styles.LoaderContainer}>
-        <CircularProgress className={styles.Loader} scale={2} />
+        <CircularProgress className={styles.Loader} scale={2} id="loading products" />
       </div>
     )
   } else {
@@ -40,7 +41,7 @@ const ProductMainSection = ({ viewMode, changeViewMode, products, loading }) => 
           </button>
           <div className={styles.HeaderFiftyFifty}>
             <p className={styles.HeaderText}>
-              Showing <strong>10</strong> products - Hidden: <strong>5</strong>
+              Showing <strong>{visibles.length}</strong> products - Hidden: <strong>{hiddenProducts}</strong>
             </p>
             <div className={styles.SearchContainer}>
               <TextField
@@ -54,7 +55,7 @@ const ProductMainSection = ({ viewMode, changeViewMode, products, loading }) => 
         </header>
         <div className={productListClass}>
           {
-            products.map(product => {
+            visibles.map(product => {
               const productData = {
                 title: product.name,
                 subtitle: product.brand,
@@ -77,9 +78,10 @@ const ProductMainSection = ({ viewMode, changeViewMode, products, loading }) => 
 }
 
 ProductMainSection.propTypes = {
-  viewMode: PropTypes.bool,
+  viewMode: PropTypes.string,
   changeViewMode: PropTypes.func,
-  products: PropTypes.array,
+  visibles: PropTypes.array,
+  all: PropTypes.array,
   loading: PropTypes.bool,
 }
 
