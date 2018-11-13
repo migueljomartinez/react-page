@@ -4,60 +4,13 @@ import {
   List,
   Subheader,
   Divider,
-  FontIcon,
-  Avatar,
 } from 'react-md';
-import { Link } from 'react-router-dom'
 import { productFilters } from '../../helpers/enums'
 import styles from './ProductAside.module.sass'
-
-const AllIcon = (
-  <Avatar className={styles.IconContainer}>
-    <FontIcon className={styles.Icon}>list</FontIcon>
-  </Avatar>
-)
-
-const TechIcon = (
-  <Avatar className={styles.IconContainer}>
-    <FontIcon className={styles.Icon}>computer</FontIcon>
-  </Avatar>
-)
-
-const ServicesIcon = (
-  <Avatar className={styles.IconContainer}>
-    <FontIcon className={styles.Icon}>build</FontIcon>
-  </Avatar>
-)
-
-const OfficeIcon = (
-  <Avatar className={styles.IconContainer}>
-    <FontIcon className={styles.Icon}>folder</FontIcon>
-  </Avatar>
-)
-
-const OwnListItem = ({
-  to, children, icon, active,
-}) => {
-  const itemClassName = active ? styles.ListItemActive : styles.ListItem
-
-  return (
-    <li className={itemClassName}>
-      <Link to={to} className={styles.ListItemLink}>
-        {icon}
-        <span className="md-tile-text--primary md-text">
-          {children}
-        </span>
-      </Link>
-    </li>
-  )
-}
-
-OwnListItem.propTypes = {
-  to: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
-  icon: PropTypes.element.isRequired,
-  active: PropTypes.bool.isRequired,
-}
+import OwnListItem from '../OwnListItem/OwnListItem'
+import {
+  AllIcon, TechIcon, ServicesIcon, OfficeIcon,
+} from '../Icon/Icon'
 
 const ProductAside = ({ filter }) => (
   <div className={styles.Container}>
