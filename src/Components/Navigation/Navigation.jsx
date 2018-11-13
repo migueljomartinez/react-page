@@ -34,14 +34,14 @@ const Navigation = (props) => {
   const activeTabIndex = currentTab.index || 0
 
   return (
-    <div className={styles.TabsWrapper}>
+    <nav className={styles.TabsWrapper}>
       <Tabs className={styles.Tabs} tabId="main-menu" defaultTabIndex={activeTabIndex} colored>
         <Tab label="Home" onClick={() => history.push('/')} />
         <Tab label="Products" onClick={() => history.push('/products')} />
         <Tab label="Clients" onClick={() => history.push('/clients')} />
         <Tab label="Contact" onClick={() => history.push('/contact')} />
       </Tabs>
-    </div>
+    </nav>
   )
 }
 

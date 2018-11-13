@@ -72,9 +72,9 @@ const ProductMainSection = ({
               price: product.price,
             }
             return (
-              <div className={styles.ProductContainer} key={product.id}>
+              <article className={styles.ProductContainer} key={product.id}>
                 <ProductCard inAGrid={viewMode === productViewModes.grid} {...productData} />
-              </div>
+              </article>
             )
           })
         }

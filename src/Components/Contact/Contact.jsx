@@ -37,7 +37,7 @@ FieldError.defaultProps = {
 }
 
 const Contact = ({ sendContactForm }) => (
-  <div className={styles.Container}>
+  <section className={styles.Container}>
     <Paper zDepth={1} className={styles.Paper}>
       <Formik
         initialValues={{
@@ -137,7 +137,7 @@ const Contact = ({ sendContactForm }) => (
         )}
       />
     </Paper>
-  </div>
+  </section>
 )
 
 Contact.propTypes = {

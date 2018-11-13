@@ -7,7 +7,7 @@ import ProductMainSection from '../ProductMainSection/ProductMainSection'
 const Products = ({
   viewMode, changeViewMode, visibles, all, loading, filter, setSearchValue,
 }) => (
-  <div className={styles.Container}>
+  <section className={styles.Container}>
     <ProductsAside filter={filter} />
     <ProductMainSection
       viewMode={viewMode}
@@ -17,7 +17,7 @@ const Products = ({
       loading={loading}
       setSearchValue={setSearchValue}
     />
-  </div>
+  </section>
 )
 
 Products.propTypes = {

@@ -2,9 +2,9 @@ import React from 'react'
 import styles from './Home.module.sass'
 
 const Home = () => (
-  <div className={styles.Container}>
+  <section className={styles.Container}>
     <h1>Home</h1>
-  </div>
+  </section>
 )
 
 export default Home
