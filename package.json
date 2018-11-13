@@ -1,6 +1,6 @@
 {
   "name": "react-test-app",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "dependencies": {
     "@babel/core": "7.1.0",
