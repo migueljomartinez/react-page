@@ -1,12 +1,12 @@
 import { constants } from './actions'
 
-const defaultState = {
+export const defaultState = {
   items: [],
   loading: false,
   search: '',
 }
 
-export default function allProducts(state = defaultState, action) {
+export default function allProducts(state = defaultState, action = {}) {
   switch (action.type) {
     case constants.FETCHING_PRODUCTS:
       return {

@@ -4,7 +4,7 @@ const defaultState = {
   loading: false,
 }
 
-export default function contactReducer(state = defaultState, action) {
+export default function contactReducer(state = defaultState, action = {}) {
   switch (action.type) {
     case constants.SENDING_CONTACT_FORM:
       return { loading: true }
