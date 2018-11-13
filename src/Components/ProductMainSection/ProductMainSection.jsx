@@ -5,17 +5,22 @@ import {
   TextField,
   CircularProgress,
 } from 'react-md';
-import { productViewModes } from '../../helpers/enums'
+import { productViewModes, productFilters } from '../../helpers/enums'
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProductMainSection.module.sass'
 
 const ProductMainSection = ({
-  viewMode, changeViewMode, visibles, all, loading, setSearchValue,
+  viewMode, changeViewMode, visibles, all, loading, setSearchValue, category,
 }) => {
   const productListClass = viewMode === productViewModes.grid
     ? styles.ProductListGrid
     : styles.ProductList
   const hiddenProducts = all.length - visibles.length
+  const hiddenElms = category && category !== productFilters.all && (
+    <span>
+      {' '}- Hidden: <strong>{hiddenProducts}</strong>
+    </span>
+  )
 
   if (loading) {
     return (
@@ -44,10 +49,8 @@ const ProductMainSection = ({
         </button>
         <div className={styles.HeaderFiftyFifty}>
           <p className={styles.HeaderText}>
-            Showing{' '}
-            <strong>{visibles.length}</strong>{' '}
-            products - Hidden:{' '}
-            <strong>{hiddenProducts}</strong>
+            Showing <strong>{visibles.length}</strong> products
+            {hiddenElms}
           </p>
           <div className={styles.SearchContainer}>
             <TextField
@@ -90,6 +93,11 @@ ProductMainSection.propTypes = {
   all: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loading: PropTypes.bool.isRequired,
   setSearchValue: PropTypes.func.isRequired,
+  category: PropTypes.string,
+}
+
+ProductMainSection.defaultProps = {
+  category: '',
 }
 
 export default ProductMainSection

@@ -16,6 +16,7 @@ const Products = ({
       all={all}
       loading={loading}
       setSearchValue={setSearchValue}
+      category={filter}
     />
   </section>
 )
