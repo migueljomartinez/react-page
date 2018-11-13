@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### Start server
+To start the server go to /server and run npm start or if you want to use one command to start both the server and the app run `npm run start-with-server` in the root directory
+
 ### `npm start`
 
 Runs the app in the development mode.<br>

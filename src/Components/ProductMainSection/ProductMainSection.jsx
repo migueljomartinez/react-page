@@ -10,7 +10,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProductMainSection.module.sass'
 
 const ProductMainSection = ({
-  viewMode, changeViewMode, visibles, all, loading,
+  viewMode, changeViewMode, visibles, all, loading, setSearchValue,
 }) => {
   const productListClass = viewMode === productViewModes.grid
     ? styles.ProductListGrid
@@ -55,6 +55,7 @@ const ProductMainSection = ({
               lineDirection="center"
               placeholder="something..."
               id="search-products"
+              onChange={value => setSearchValue(value)}
             />
           </div>
         </div>
@@ -88,6 +89,7 @@ ProductMainSection.propTypes = {
   visibles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   all: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loading: PropTypes.bool.isRequired,
+  setSearchValue: PropTypes.func.isRequired,
 }
 
 export default ProductMainSection

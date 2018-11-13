@@ -4,11 +4,21 @@ import { connect } from 'react-redux'
 import Products from '../Components/Products/Products'
 import productsAction from '../module/products/actions'
 
-const getVisibleProducts = (products, filter) => {
-  if (!filter) return products
-  const filtered = products.filter(product => (
-    product.categories.find((category = '') => category.toLowerCase() === filter)
-  ))
+const getVisibleProducts = (products, filter, search = '') => {
+  const filterByCategory = (product) => {
+    if (!filter) return product
+
+    return product.categories.find(
+      (category = '') => category.toLowerCase() === filter,
+    )
+  }
+  const filterBySearch = (product) => {
+    if (!search) return product
+    const name = product.name || ''
+    const shouldRemain = name.toLowerCase().includes(search.toLowerCase())
+    return shouldRemain
+  }
+  const filtered = products.filter(filterByCategory).filter(filterBySearch)
 
   return filtered
 }
@@ -16,7 +26,11 @@ const getVisibleProducts = (products, filter) => {
 const mapStateToProps = (state, ownProps) => ({
   products: {
     ...state.products,
-    visibles: getVisibleProducts(state.products.items, ownProps.match.params.filter),
+    visibles: getVisibleProducts(
+      state.products.items,
+      ownProps.match.params.filter,
+      state.products.search,
+    ),
     all: state.products.items,
   },
 })
@@ -24,6 +38,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   getProducts() {
     dispatch(productsAction.getProducts())
+  },
+  setSearchValue(value) {
+    dispatch(productsAction.setSearchValue(value))
   },
 })
 
@@ -48,7 +65,7 @@ class ProductsPages extends React.Component {
 
   render() {
     const { viewMode } = this.state
-    const { products, match } = this.props
+    const { products, match, setSearchValue } = this.props
 
     return (
       <Products
@@ -58,6 +75,7 @@ class ProductsPages extends React.Component {
         all={products.all}
         loading={products.loading}
         filter={match.params.filter}
+        setSearchValue={setSearchValue}
       />
     )
   }
@@ -67,6 +85,7 @@ ProductsPages.propTypes = {
   getProducts: PropTypes.func.isRequired,
   match: PropTypes.shape({}).isRequired,
   products: PropTypes.shape({}).isRequired,
+  setSearchValue: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsPages)

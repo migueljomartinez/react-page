@@ -4,6 +4,7 @@ export const constants = {
   FETCHING_PRODUCTS: 'FETCHING_PRODUCTS',
   FETCHING_PRODUCTS_SUCCESS: 'FETCHING_PRODUCTS_SUCCESS',
   FETCHING_PRODUCTS_ERROR: 'FETCHING_PRODUCTS_ERROR',
+  SET_SEARCH_VALUE: 'SET_SEARCH_VALUE',
 }
 
 const fetchingProducts = () => ({
@@ -21,6 +22,11 @@ const fetchingProductsError = payload => ({
   error: true,
 })
 
+const setSearchValue = value => ({
+  type: constants.SET_SEARCH_VALUE,
+  payload: value,
+})
+
 const getProducts = () => (dispatch) => {
   dispatch(fetchingProducts())
 
@@ -33,4 +39,4 @@ const getProducts = () => (dispatch) => {
     })
 }
 
-export default { getProducts }
+export default { getProducts, setSearchValue }

@@ -5,7 +5,7 @@ import ProductsAside from '../ProductAside/ProductAside'
 import ProductMainSection from '../ProductMainSection/ProductMainSection'
 
 const Products = ({
-  viewMode, changeViewMode, visibles, all, loading, filter,
+  viewMode, changeViewMode, visibles, all, loading, filter, setSearchValue,
 }) => (
   <div className={styles.Container}>
     <ProductsAside filter={filter} />
@@ -15,6 +15,7 @@ const Products = ({
       visibles={visibles}
       all={all}
       loading={loading}
+      setSearchValue={setSearchValue}
     />
   </div>
 )
@@ -35,6 +36,7 @@ Products.propTypes = {
   all: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loading: PropTypes.bool.isRequired,
   filter: PropTypes.string,
+  setSearchValue: PropTypes.func.isRequired,
 }
 
 Products.defaultProps = {

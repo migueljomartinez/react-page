@@ -3,6 +3,7 @@ import { constants } from './actions'
 const defaultState = {
   items: [],
   loading: false,
+  search: '',
 }
 
 export default function allProducts(state = defaultState, action) {
@@ -25,6 +26,12 @@ export default function allProducts(state = defaultState, action) {
         ...state,
         items: action.payload,
         loading: false,
+      }
+
+    case constants.SET_SEARCH_VALUE:
+      return {
+        ...state,
+        search: action.payload,
       }
 
     default:
