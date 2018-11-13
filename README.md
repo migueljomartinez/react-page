@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Install
-git clone and the `npm i` in the root directory and `npm i` in the `/server` directory
+git clone and then `npm i` in the root directory and `npm i` in the `/server` directory
 
 ## Available Scripts
 
