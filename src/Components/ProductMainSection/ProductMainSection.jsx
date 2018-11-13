@@ -44,9 +44,9 @@ const ProductMainSection = ({
         </button>
         <div className={styles.HeaderFiftyFifty}>
           <p className={styles.HeaderText}>
-            Showing
-            <strong>{visibles.length}</strong>
-            products - Hidden:
+            Showing{' '}
+            <strong>{visibles.length}</strong>{' '}
+            products - Hidden:{' '}
             <strong>{hiddenProducts}</strong>
           </p>
           <div className={styles.SearchContainer}>

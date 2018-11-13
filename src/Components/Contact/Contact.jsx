@@ -28,11 +28,12 @@ const FieldError = ({ error, touched }) => (
 
 FieldError.propTypes = {
   error: PropTypes.string,
-  touched: PropTypes.bool.isRequired,
+  touched: PropTypes.bool,
 }
 
 FieldError.defaultProps = {
   error: '',
+  touched: false,
 }
 
 const Contact = ({ sendContactForm }) => (
@@ -124,7 +125,11 @@ const Contact = ({ sendContactForm }) => (
               )}
             />
             <div className={styles.SubmitBtnContainer}>
-              <Button raised type="submit" disabled={!isValid || isSubmitting}>
+              <Button
+                raised
+                type="submit"
+                disabled={!isValid || isSubmitting}
+              >
                 Submit
               </Button>
             </div>

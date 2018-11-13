@@ -26,12 +26,10 @@ const Product = ({
           <CardText className={styles.ProductText}>
             <p className={styles.ProductDescription}>{description}</p>
             <p className={styles.ProductStock}>
-              <strong>Stock:</strong>
-              {stock}
+              <strong>Stock:</strong> {stock}
             </p>
             <p className={styles.ProductPrice}>
-              <strong>Price:</strong>
-              {price}
+              <strong>Price:</strong> {price}
             </p>
           </CardText>
         </div>
