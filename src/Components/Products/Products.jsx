@@ -4,24 +4,20 @@ import styles from './Products.module.sass'
 import ProductsAside from '../ProductAside/ProductAside'
 import ProductMainSection from '../ProductMainSection/ProductMainSection'
 
-export default class Products extends React.Component {
-  render() {
-    const { viewMode, changeViewMode, visibles, all, loading, filter } = this.props
-
-    return (
-      <div className={styles.Container}>
-        <ProductsAside filter={filter} />
-        <ProductMainSection
-          viewMode={viewMode}
-          changeViewMode={changeViewMode}
-          visibles={visibles}
-          all={all}
-          loading={loading}
-        />
-      </div>
-    )
-  }
-}
+const Products = ({
+  viewMode, changeViewMode, visibles, all, loading, filter,
+}) => (
+  <div className={styles.Container}>
+    <ProductsAside filter={filter} />
+    <ProductMainSection
+      viewMode={viewMode}
+      changeViewMode={changeViewMode}
+      visibles={visibles}
+      all={all}
+      loading={loading}
+    />
+  </div>
+)
 
 Products.propTypes = {
   viewMode: PropTypes.string.isRequired,
@@ -36,7 +32,13 @@ Products.propTypes = {
     price: PropTypes.string,
     stock: PropTypes.number,
   }).isRequired).isRequired,
-  all: PropTypes.array,
+  all: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loading: PropTypes.bool.isRequired,
-  filter: PropTypes.string
+  filter: PropTypes.string,
 }
+
+Products.defaultProps = {
+  filter: '',
+}
+
+export default Products

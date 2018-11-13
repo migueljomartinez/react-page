@@ -1,17 +1,17 @@
 function fetchHelper(url, { method = 'GET', body = null } = {}) {
   return fetch(url, {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     method,
-    body
+    body,
   }).then(response => response.json())
 }
 
 function sendContactForm(data) {
   return fetchHelper('http://localhost:8888/contact', {
     method: 'POST',
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
 }
 

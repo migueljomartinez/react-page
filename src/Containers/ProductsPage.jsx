@@ -1,34 +1,31 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Products from '../Components/Products/Products'
 import productsAction from '../module/products/actions'
 
 const getVisibleProducts = (products, filter) => {
   if (!filter) return products
-  const filtered = products.filter(product => {
-    return product.categories.find((category = '') => category.toLowerCase() === filter)
-  })
+  const filtered = products.filter(product => (
+    product.categories.find((category = '') => category.toLowerCase() === filter)
+  ))
 
   return filtered
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    products: {
-      ...state.products,
-      visibles: getVisibleProducts(state.products.items, ownProps.match.params.filter),
-      all: state.products.items,
-    },
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  products: {
+    ...state.products,
+    visibles: getVisibleProducts(state.products.items, ownProps.match.params.filter),
+    all: state.products.items,
+  },
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getProducts() {
-      dispatch(productsAction.getProducts())
-    }
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  getProducts() {
+    dispatch(productsAction.getProducts())
+  },
+})
 
 const viewModes = Object.freeze({
   list: 'list',
@@ -37,7 +34,7 @@ const viewModes = Object.freeze({
 
 class ProductsPages extends React.Component {
   state = {
-    viewMode: viewModes.list
+    viewMode: viewModes.list,
   }
 
   changeViewMode = (viewMode) => {
@@ -45,13 +42,14 @@ class ProductsPages extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.getProducts()
+    const { getProducts } = this.props
+    getProducts()
   }
 
   render() {
     const { viewMode } = this.state
-    const { products } = this.props
-   
+    const { products, match } = this.props
+
     return (
       <Products
         viewMode={viewMode}
@@ -59,10 +57,16 @@ class ProductsPages extends React.Component {
         visibles={products.visibles}
         all={products.all}
         loading={products.loading}
-        filter={this.props.match.params.filter}
+        filter={match.params.filter}
       />
     )
   }
+}
+
+ProductsPages.propTypes = {
+  getProducts: PropTypes.func.isRequired,
+  match: PropTypes.shape({}).isRequired,
+  products: PropTypes.shape({}).isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsPages)

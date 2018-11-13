@@ -10,21 +10,21 @@ export default function allProducts(state = defaultState, action) {
     case constants.FETCHING_PRODUCTS:
       return {
         ...state,
-        loading: true
+        loading: true,
       }
 
     case constants.FETCHING_PRODUCTS_ERROR:
       return {
         ...state,
         error: action.payload,
-        loading: false
+        loading: false,
       }
 
     case constants.FETCHING_PRODUCTS_SUCCESS:
       return {
         ...state,
         items: action.payload,
-        loading: false
+        loading: false,
       }
 
     default:

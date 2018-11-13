@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './ProductCard.module.sass'
 import {
   Card,
   CardTitle,
   CardText,
 } from 'react-md';
+import styles from './ProductCard.module.sass'
 
-const Product = ({ title, subtitle, image, description, stock, price, inAGrid }) => {
+const Product = ({
+  title, subtitle, image, description, stock, price, inAGrid,
+}) => {
   const containerClass = inAGrid ? styles.ContainerGrid : styles.ProductContainer
 
   return (
@@ -24,10 +26,12 @@ const Product = ({ title, subtitle, image, description, stock, price, inAGrid })
           <CardText className={styles.ProductText}>
             <p className={styles.ProductDescription}>{description}</p>
             <p className={styles.ProductStock}>
-              <strong>Stock</strong>: {stock}
+              <strong>Stock:</strong>
+              {stock}
             </p>
             <p className={styles.ProductPrice}>
-              <strong>Price</strong>: ${price}
+              <strong>Price:</strong>
+              {price}
             </p>
           </CardText>
         </div>
@@ -39,10 +43,15 @@ const Product = ({ title, subtitle, image, description, stock, price, inAGrid })
 Product.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   stock: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
-  inAGrid: PropTypes.bool
+  inAGrid: PropTypes.bool,
+}
+
+Product.defaultProps = {
+  inAGrid: false,
 }
 
 export default Product

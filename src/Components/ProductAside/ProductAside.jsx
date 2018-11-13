@@ -5,7 +5,7 @@ import {
   Subheader,
   Divider,
   FontIcon,
-  Avatar
+  Avatar,
 } from 'react-md';
 import { Link } from 'react-router-dom'
 import { productFilters } from '../../helpers/enums'
@@ -35,7 +35,9 @@ const OfficeIcon = (
   </Avatar>
 )
 
-const OwnListItem = ({ to, children, icon, active }) => {
+const OwnListItem = ({
+  to, children, icon, active,
+}) => {
   const itemClassName = active ? styles.ListItemActive : styles.ListItem
 
   return (
@@ -50,34 +52,43 @@ const OwnListItem = ({ to, children, icon, active }) => {
   )
 }
 
-const ProductAside = ({ filter }) => {
-  return (
-    <div className={styles.Container}>
-      <aside className={`md-paper md-paper--1 ${styles.Aside}`}>
-        <List className="">
-          <Subheader primaryText="Categories" />
-          <Divider />
-          <OwnListItem to="/products" icon={AllIcon} active={!filter}>
-            All
-          </OwnListItem>
-          <Divider />
-          <OwnListItem to="/products/tech" icon={TechIcon} active={filter === productFilters.tech}>
-            Tech
-          </OwnListItem>
-          <OwnListItem to="/products/services" icon={ServicesIcon} active={filter === productFilters.services}>
-            Services
-          </OwnListItem>
-          <OwnListItem to="/products/office" icon={OfficeIcon} active={filter === productFilters.office}>
-            Office
-          </OwnListItem>
-        </List>
-      </aside>
-    </div>
-  )
+OwnListItem.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  icon: PropTypes.element.isRequired,
+  active: PropTypes.bool.isRequired,
 }
 
+const ProductAside = ({ filter }) => (
+  <div className={styles.Container}>
+    <aside className={`md-paper md-paper--1 ${styles.Aside}`}>
+      <List className="">
+        <Subheader primaryText="Categories" />
+        <Divider />
+        <OwnListItem to="/products" icon={AllIcon} active={!filter}>
+          All
+        </OwnListItem>
+        <Divider />
+        <OwnListItem to="/products/tech" icon={TechIcon} active={filter === productFilters.tech}>
+          Tech
+        </OwnListItem>
+        <OwnListItem to="/products/services" icon={ServicesIcon} active={filter === productFilters.services}>
+          Services
+        </OwnListItem>
+        <OwnListItem to="/products/office" icon={OfficeIcon} active={filter === productFilters.office}>
+          Office
+        </OwnListItem>
+      </List>
+    </aside>
+  </div>
+)
+
 ProductAside.propTypes = {
-  filter: PropTypes.string
+  filter: PropTypes.string,
+}
+
+ProductAside.defaultProps = {
+  filter: '',
 }
 
 export default ProductAside
